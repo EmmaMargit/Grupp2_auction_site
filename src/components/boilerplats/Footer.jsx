@@ -5,7 +5,7 @@ function Footer() {
 
     return (
       <div>
-        hejehjehej
+        hejehjehej mmnknkkk
       </div>
     )
   }
