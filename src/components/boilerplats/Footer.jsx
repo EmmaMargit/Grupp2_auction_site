@@ -1,11 +1,11 @@
-
+import React from 'react'
 
 function Footer() {
   
 
     return (
       <div>
-        hejehjehej mmnknkkk
+        ändrat
       </div>
     )
   }
