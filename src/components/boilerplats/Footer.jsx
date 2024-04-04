@@ -1,13 +1,38 @@
 import React from 'react'
+import styles from '../../stylesheet/Footer.module.css';
 
-function Footer() {
-  
-
+const Footer = () => {
     return (
-      <div>
-        ändrat
-      </div>
-    )
-  }
+        // Footer containern 
+        <footer className={styles.footer}>
+
+            {/* container som är runt de 3 info divarna */}
+            <div className={styles.footerChild}>
+
+                {/* adress containern */}
+                <div className={styles.adressContainer}>
+                    <h3 className={styles.adressHeader}>Adress</h3>
+                    <p className={styles.streetAdress}>Björkstigensvägen 24</p>
+                    <p className={styles.postalCode}>155 55 Stockholm</p>
+                </div>
+
+                {/* bidmaster containern */}
+                <div className={styles.bidmasterContainer}>
+                    <h1 className={styles.bidmasterTitle}>Bidmaster</h1>
+                </div>
+
+                {/* Kontakt containern */}
+                <div>
+                    <h3></h3>
+                    <p></p>
+                    <p></p>
+
+                </div>
+            </div>
+
+        </footer>
+    );
+};
   
-  export default Footer;
+export default Footer;
+
