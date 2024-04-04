@@ -22,7 +22,7 @@ const Footer = () => {
                 </div>
 
                 {/* Kontakt containern */}
-                <div className={styles.contactcontainer}>
+                <div className={styles.contactContainer}>
                     <h3 className={styles.contactHeader}>Kontakt</h3>
                     <p className={styles.phoneNumber}>08-555 44 33</p>
                     <p className={styles.emailAdress}>exempel@gmail.com</p>

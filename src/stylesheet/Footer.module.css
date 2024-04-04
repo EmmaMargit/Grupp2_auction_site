@@ -1,8 +1,25 @@
-
 .footer {
     background-color: bisque;
     width: 100%;
-    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+.footerChild {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
+.adressContainer,
+.bidmasterContainer,
+.contactContainer {
+    flex-grow: 1; /* Alla container-element expanderar för att fylla hela bredden av .footerChild */
+    margin: 0 20px; /* Exempel på marginaler mellan container-elementen */
+}
+
+.adressHeader,
+.bidmasterTitle,
+.contactHeader {
+    margin-left: 20px; /* Lägger till vänstermarginal */
+}
 
