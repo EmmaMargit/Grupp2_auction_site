@@ -7,7 +7,6 @@ import './stylesheet/App.css'
 
 function App() {
   
-
   return (
     <>
       <Footer />
