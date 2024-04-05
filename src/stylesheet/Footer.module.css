@@ -2,10 +2,11 @@
     background-color: bisque;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    
 }
 .footerChild {
     display: flex;
+    justify-content: space-around;
     flex-direction: row;
     width: 100%;
 }
@@ -14,12 +15,20 @@
 .bidmasterContainer,
 .contactContainer {
     flex-grow: 1; /* Alla container-element expanderar för att fylla hela bredden av .footerChild */
-    margin: 0 20px; /* Exempel på marginaler mellan container-elementen */
+    /* Exempel på marginaler mellan container-elementen */
+    margin: 0 90px; 
+} 
+
+.bidmasterContainer {
+    display: flex;
+    justify-content: center; /* Horisontell centrering */
+    align-items: center; /* Vertikal centrering */
 }
 
 .adressHeader,
-.bidmasterTitle,
 .contactHeader {
     margin-left: 20px; /* Lägger till vänstermarginal */
 }
+
+
 
