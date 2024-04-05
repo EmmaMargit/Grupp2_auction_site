@@ -1,8 +1,26 @@
 import "@fontsource/pacifico"
 import "@fontsource/pacifico/400.css"
 import "@fontsource/pacifico/cyrillic-400.css"
+import '../stylesheet/header.css'; 
 
 const Header = () => {
+  return (
+    <header>
+    <div className="logo">Bidmaster</div>
+    <nav>
+      <ul className="nav-links">
+        <li><a href="#">Lägg till annons</a></li>
+        <li><a href="#">Skapa konto</a></li>
+        <li><a href="#">Logga in</a></li>
+        <li><a href="#">English</a></li>
+      </ul>
+    </nav>
+  </header>
+  );
+};
+
+
+/*const Header = () => {
 
     return (
         <>
@@ -12,4 +30,7 @@ const Header = () => {
         </>
     )
 }
+*/
+
+
 export default Header
