@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "../stylesheet/FirstPage.css";
+// import ".../stylesheet/FirstPage.css";
 
 function FirstPage() {
   const inputField = useRef(null); //Referens till inpufält
