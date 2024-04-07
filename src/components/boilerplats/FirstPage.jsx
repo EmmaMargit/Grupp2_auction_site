@@ -1,41 +1,42 @@
-import React, {useRef, useState} from "react";
-import "../stylesheet/FirstPage.css"; 
+import React, { useState, useEffect } from "react";
 
-function FirstPage () {
-const inputField = useRef(null); //Referens till inpufält
-const [searchResult, setSearchResult] = useState([]); //State för sökresultatet
+function FirstPage() {
+  // Alla auktioner
+  const [auctions, setAuctions] = useState([]);
 
-const inputHandler = (event) => {
-    const value = inputField.current.value;
-}
+  useEffect(() => {
+    getAuctions();
+  }, []);
 
-const inputBtn = (event) => {
-event.preventDefault();
-} 
-
-//Funktion för att hämta alla auktioner
-
-function getAuctions () {
-    fetch (`länk att fetcha`)
-    .then((response) => response.json())
+  // Funktion för att hämta alla auktioner
+  function getAuctions() {
+    fetch(`https://auctioneer2.azurewebsites.net/auction/2wvu`)
+      .then((response) => response.json())
       .then((result) => {
-        setMealResult(result.meals);
+        // Kolla om det finns auktioner
+         if (result && result.length > 0) {
+          setAuctions(result);
+        }
       })
       .catch((error) => {
-        console.error("Felmeddelande", error); 
+        console.error("Felmeddelande", error);
       });
-  
-}
+  }
 
-return (
+  return (
     <div className="container">
-        <form className="inputStyling" onSubmit={inputBtn}>
-        <input type="text" ref={inputField} onChange={inputHandler}/>
-        <button type="submit">Sök</button>
-        </form>
-        <h2>Alla auktioner</h2>
+       <h2>Alla auktioner</h2>
+    {auctions && auctions.length > 0 && (
+      <ul>
+        {auctions.map((auction, index) => (
+          <li key={index}>
+            <h3>{auction.Title}</h3>
+          </li>
+        ))}
+      </ul>
+    )}
     </div>
-)
-};
+  );
+}
 
 export default FirstPage;
