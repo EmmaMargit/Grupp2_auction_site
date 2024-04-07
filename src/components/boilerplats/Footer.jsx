@@ -1,7 +1,9 @@
 import React from 'react'
 import styles from '../../stylesheet/Footer.module.css';
-/* Denna är för h1 och h3:ans font family */
+// Denna är för h1 och h3:ans font family:
 import '@fontsource/pacifico';
+// Denna är till fonten för <p>:
+import '@fontsource-variable/inter';
 
 const Footer = () => {
     return (
