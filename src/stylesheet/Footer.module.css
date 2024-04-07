@@ -1,8 +1,6 @@
-/* Denna är för h1 och h3:ans font family */
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 .footer {
-    background-color: bisque;
+    background-color: #000;
     width: 100%;
     height: 275px;
     display: flex;
@@ -25,7 +23,6 @@
 } 
 
 .bidmasterContainer {
-    /* font-family: ; */
     display: flex;
     justify-content: center; /* Horisontell centrering */
     align-items: center; /* Vertikal centrering */
@@ -34,6 +31,15 @@
 .adressHeader,
 .contactHeader {
     margin-left: 20px; /* Lägger till vänstermarginal */
+}
+.adressHeader,
+.contactHeader,
+.bidmasterTitle {
+    font-family: 'Pacifico';
+    color: white;
+}
+.sameStyleP {
+    color: white;
 }
 
 
