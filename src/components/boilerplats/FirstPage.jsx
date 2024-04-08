@@ -1,3 +1,4 @@
+import "../../stylesheet/FirstPage.css"
 import React, { useState, useEffect } from "react";
 import "../../stylesheet/FirstPage.css"
 
