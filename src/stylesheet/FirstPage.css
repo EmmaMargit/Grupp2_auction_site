@@ -1,8 +1,8 @@
 .container {
     background-color: aqua;
-    position: relative;
-    top: 300px;
-    /* width: 100%; */
+    position: fixed;
+    top: 275px;
+    width: 100%;
     text-align: center;
 }
 
