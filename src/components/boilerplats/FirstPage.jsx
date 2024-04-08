@@ -25,18 +25,22 @@ function FirstPage() {
   }
 
   return (
-    <div className="container">
-      <h2>Alla auktioner</h2>
-      {auctions && auctions.length > 0 && (
-        <ul>
-          {auctions.map((auction, index) => (
-            <li key={index}>
-              <h3>{auction.Title}</h3>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <>
+      <div className="container">
+        <input type="text" id="searchBar" placeholder="Search" />
+
+        <h2>Alla auktioner</h2>
+        {auctions && auctions.length > 0 && (
+          <ul>
+            {auctions.map((auction, index) => (
+              <li key={index}>
+                <h3>{auction.Title}</h3>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </>
   );
 }
 
