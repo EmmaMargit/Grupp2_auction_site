@@ -1,17 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+import { useEffect, useState } from "react";
+import Footer from "./components/boilerplats/Footer";
+import "./stylesheet/Footer.module.css";
+import "./stylesheet/App.css";
+import Details from "./components/boilerplats/Details";
 import Header from './components/boilerplats/Header'
 import FirstPage from './components/boilerplats/FirstPage'
-/* import './stylesheet/App.css' */
 
 function App() {
-
-
   return (
     <>
       <Header />
       <FirstPage />
+      <Details />
+      <Footer />
+
     </>
   )
 }
