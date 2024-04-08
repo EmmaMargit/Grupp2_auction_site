@@ -33,12 +33,19 @@ function FirstPage() {
         {auctions && auctions.length > 0 && (
           <ul>
             {auctions.map((auction, index) => (
-              <li key={index}>
-                <h3>{auction.Title}</h3>
-              </li>
+              <ul key={index} >
+                <h3 id="auctionTitle">{auction.Title}</h3>
+              </ul>
             ))}
           </ul>
         )}
+        <div id="category">
+          <h2>Kategori</h2>
+          <h4>Alla kategorier   (13)</h4>
+          <h4>Konst  (3)</h4>
+          <h4>Klockor   (6)</h4>
+          <h4>Böcker   (4)</h4>
+        </div>
       </div>
     </>
   );
