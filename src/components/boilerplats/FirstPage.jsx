@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../../stylesheet/FirstPage.css"
 
 function FirstPage() {
   // Alla auktioner
@@ -14,7 +15,7 @@ function FirstPage() {
       .then((response) => response.json())
       .then((result) => {
         // Kolla om det finns auktioner
-         if (result && result.length > 0) {
+        if (result && result.length > 0) {
           setAuctions(result);
         }
       })
@@ -25,16 +26,16 @@ function FirstPage() {
 
   return (
     <div className="container">
-       <h2>Alla auktioner</h2>
-    {auctions && auctions.length > 0 && (
-      <ul>
-        {auctions.map((auction, index) => (
-          <li key={index}>
-            <h3>{auction.Title}</h3>
-          </li>
-        ))}
-      </ul>
-    )}
+      <h2>Alla auktioner</h2>
+      {auctions && auctions.length > 0 && (
+        <ul>
+          {auctions.map((auction, index) => (
+            <li key={index}>
+              <h3>{auction.Title}</h3>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
