@@ -1,4 +1,10 @@
 .container {
+
+    min-height: 100vh;
+    padding: 20px;
+    
+}
+
     background-color: aqua;
     position: fixed;
     top: 275px;
@@ -30,3 +36,4 @@
     position: relative;
     top: -5px;
 }
+
