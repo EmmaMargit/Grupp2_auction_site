@@ -6,8 +6,19 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
 
+}
+
+#auctionTitle {
+    display: inline-block;
+    width: fit-content;
+    background-color: bisque;
+    margin: 5px;
+    padding: 10px;
 
 }
 
@@ -19,13 +30,6 @@
     background-image: url("pics/searchIcon.png") 
 }
 
-
-#auctionTitle {
-    display: inline-block;
-    width: fit-content;
-    background-color: bisque;
-
-}
 
 #category {
     border: 1px solid black;
