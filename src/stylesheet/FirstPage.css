@@ -19,11 +19,9 @@
 }
 
 
-
 #auctionTitle {
+    display: inline-block;
     width: fit-content;
-
-
     background-color: bisque;
 
 }
