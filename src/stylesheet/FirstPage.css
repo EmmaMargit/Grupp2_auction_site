@@ -2,10 +2,6 @@
 
     min-height: 100vh;
     padding: 20px;
-    
-
-
-    background-color: aqua;
     position: fixed;
     top: 275px;
     width: 100%;
@@ -24,7 +20,7 @@
 
 #auctionTitle {
     display: inline-block;
-    background-color: bisque;
+    
 
 }
 
