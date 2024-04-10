@@ -33,8 +33,8 @@ function FirstPage() {
         {auctions && auctions.length > 0 && (
           <ul>
             {auctions.map((auction, index) => (
-              <ul key={index} >
-                <h3 id="auctionTitle">{auction.Title}</h3>
+              <ul key={index} id="auctionTitle">
+                <h3 >{auction.Title}</h3>
               </ul>
             ))}
           </ul>
