@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../../stylesheet/FirstPage.css"
+import "../../stylesheet/FirstPage.css";
+import { Link } from "react-router-dom";
 
 function FirstPage() {
   // Alla auktioner
@@ -31,29 +32,29 @@ function FirstPage() {
         <h1>Alla auktioner</h1>
         <div className="auctions-container">
 
+        {auctions && auctions.length > 0 && (
+          <ul>
+            {auctions.map((auction, index) => (
+              <ul key={index} id="auctionTitle">
+                <Link
+                  to={`/auction/${auction.AuctionID}`}
+                  state={{ auction: auction }}
+                >
+                  <h2 id="auctionTitle">{auction.Title}</h2>
+                </Link>
+                <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
+                <h3 id="auctionEndDate">{auction.EndDate}</h3>
+              </ul>
+            ))}
+          </ul>
+        )}
+        <div id="category">
+          <h2>Kategori</h2>
+          <h4>Alla kategorier (13)</h4>
+          <h4>Konst (3)</h4>
+          <h4>Klockor (6)</h4>
+          <h4>Böcker (4)</h4>
 
-
-          {auctions && auctions.length > 0 && (
-            <ul>
-              {auctions.map((auction, index) => (
-
-                <ul key={index} id="auctionTitle">
-                  <h2>{auction.Title}</h2>
-                  <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
-                  <h3 id="auctionEndDate">{auction.EndDate}</h3>
-
-
-
-                </ul>
-              ))}
-            </ul>
-          )}   <div id="category">
-            <h2>Kategori</h2>
-            <h4>Alla kategorier   (13)</h4>
-            <h4>Konst  (3)</h4>
-            <h4>Klockor   (6)</h4>
-            <h4>Böcker   (4)</h4>
-          </div>
         </div>
 
       </div>
