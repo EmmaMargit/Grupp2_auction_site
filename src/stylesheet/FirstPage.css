@@ -20,15 +20,11 @@
 }
 
 
-
 #auctionTitle {
-    <<<<<<< HEAD display: inline-block;
-
-    =======width: fit-content;
-
-
+    display: inline-block;
+    width: fit-content;
     background-color: bisque;
-    >>>>>>>personal-branch
+
 }
 
 #category {
