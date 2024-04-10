@@ -35,14 +35,17 @@ function FirstPage() {
           <ul>
             {auctions.map((auction, index) => (
               <ul key={index}>
-                {/* TODO: Gör om Link nedan, den måste oxå importeras. sen måste ni i Details lyfta in useLocation och inte gå via props.
-                <Link to={`/auction/${auction.AuctionID}`} state={{ auction: auction }}>Till specifik auktion</Link> */}
                 <Link
                   to={`/auction/${auction.AuctionID}`}
                   state={{ auction: auction }}
                 >
                   <h3 id="auctionTitle">{auction.Title}</h3>
                 </Link>
+
+              <ul key={index} id="auctionTitle">
+                <h2 id="auctionTitle">{auction.Title}</h2>
+                <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
+                <h3 id="auctionEndDate">{auction.EndDate}</h3>
               </ul>
             ))}
           </ul>
