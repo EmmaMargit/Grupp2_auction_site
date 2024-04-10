@@ -2,10 +2,13 @@
     min-height: 100vh;
     padding: 20px;
     background-color: aqua;
-    position: fixed;
     top: 275px;
     width: 100%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+
+
 }
 
 #searchBar {
@@ -16,9 +19,13 @@
     /* background-image: url("pics/searchIcon.png") */
 }
 #auctionTitle {
-    display: inline-block;
-    background-color: bisque;
+    <<<<<<< HEAD display: inline-block;
 
+    =======width: fit-content;
+
+
+    background-color: bisque;
+    >>>>>>>personal-branch
 }
 
 #category {
@@ -26,7 +33,6 @@
     border-radius: 2px;
     width: fit-content;
     padding: 20px;
-    position: relative;
+    /* position: relative; */
     top: -5px;
 }
-
