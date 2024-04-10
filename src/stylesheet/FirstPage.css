@@ -13,10 +13,14 @@
     height: 20px;
     border: 2px solid black;
     margin-top: 20px;
-    /* background-image: url("pics/searchIcon.png") */
+    background-image: url("pics/searchIcon.png")
 }
+
 #auctionTitle {
-   display: inline-block;
+    display: inline-block;
+    width: fit-content;
+    background-color: bisque;
+
 }
 
 #category {
