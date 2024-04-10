@@ -34,16 +34,13 @@ function FirstPage() {
         {auctions && auctions.length > 0 && (
           <ul>
             {auctions.map((auction, index) => (
-              <ul key={index}>
+              <ul key={index} id="auctionTitle">
                 <Link
                   to={`/auction/${auction.AuctionID}`}
                   state={{ auction: auction }}
                 >
-                  <h3 id="auctionTitle">{auction.Title}</h3>
+                  <h2 id="auctionTitle">{auction.Title}</h2>
                 </Link>
-
-              <ul key={index} id="auctionTitle">
-                <h2 id="auctionTitle">{auction.Title}</h2>
                 <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
                 <h3 id="auctionEndDate">{auction.EndDate}</h3>
               </ul>
