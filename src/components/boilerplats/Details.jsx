@@ -1,4 +1,6 @@
+
 // import React, { useEffect, useState } from "react";
+
 
 // function Details() {
 //   const [getAuctionById, setGetAuctionById] = useState([]);
@@ -27,4 +29,6 @@
 //   );
 // }
 
+
 // export default Details;
+
