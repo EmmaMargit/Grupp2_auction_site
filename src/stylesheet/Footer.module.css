@@ -1,49 +1,46 @@
-
 .footer {
-    position: absolute;
-    background-color: #000;
-    width: 100%;
-    height: 275px;
-    display: flex;
-    top: 100%;
-    justify-content: space-around;
-    align-items: center; /* Centrerar vertikalt */
+  position: absolute;
+  background-color: #000;
+  width: 100%;
+  height: 275px;
+  display: flex;
+  top: 100%;
+  justify-content: space-around;
+  align-items: center; /* Centrerar vertikalt */
+
 }
 .footerChild {
-    display: flex;
-    justify-content: space-around;  
-    flex-direction: row;
-    width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
 }
 
 .adressContainer,
 .bidmasterContainer,
 .contactContainer {
-    flex-grow: 1; /* Alla container-element expanderar för att fylla hela bredden av .footerChild */
-    /* Exempel på marginaler mellan container-elementen */
-    margin: 0 90px;  
-} 
+  flex-grow: 1; /* Alla container-element expanderar för att fylla hela bredden av .footerChild */
+  /* Exempel på marginaler mellan container-elementen */
+  margin: 0 90px;
+}
 
 .bidmasterContainer {
-    display: flex;
-    justify-content: center; /* Horisontell centrering */
-    align-items: center; /* Vertikal centrering */
+  display: flex;
+  justify-content: center; /* Horisontell centrering */
+  align-items: center; /* Vertikal centrering */
 }
 
 .adressHeader,
 .contactHeader {
-    margin-left: 20px; /* Lägger till vänstermarginal */
+  margin-left: 20px; /* Lägger till vänstermarginal */
 }
 .adressHeader,
 .contactHeader,
 .bidmasterTitle {
-    font-family: 'Pacifico';
-    color: white;
+  font-family: "Pacifico";
+  color: white;
 }
 .sameStyleP {
-   font-family: 'Inter Variable';
-    color: white;
+  font-family: "Inter Variable";
+  color: white;
 }
-
-
-
