@@ -29,8 +29,9 @@ function FirstPage() {
     <>
       <div className="container">
         <input type="text" id="searchBar" placeholder="Search" />
+        <h1>Alla auktioner</h1>
+        <div className="auctions-container">
 
-        <h2>Alla auktioner</h2>
         {auctions && auctions.length > 0 && (
           <ul>
             {auctions.map((auction, index) => (
@@ -53,7 +54,9 @@ function FirstPage() {
           <h4>Konst (3)</h4>
           <h4>Klockor (6)</h4>
           <h4>Böcker (4)</h4>
+
         </div>
+
       </div>
     </>
   );
