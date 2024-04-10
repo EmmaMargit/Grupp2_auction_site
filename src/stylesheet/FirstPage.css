@@ -1,9 +1,13 @@
 .container {
     background-color: aqua;
-    position: fixed;
+    /* position: fixed; */
     top: 275px;
     width: 100%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+
+
 }
 
 #searchBar {
@@ -17,7 +21,9 @@
 
 
 #auctionTitle {
-    display: inline-block;
+    width: fit-content;
+
+
     background-color: bisque;
 
 }
@@ -27,6 +33,6 @@
     border-radius: 2px;
     width: fit-content;
     padding: 20px;
-    position: relative;
+    /* position: relative; */
     top: -5px;
 }
