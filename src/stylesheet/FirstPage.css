@@ -9,39 +9,41 @@
     align-items: center;
 
     flex-wrap: wrap;
+}
 
-    #auctionTitle {
-        display: inline-block;
+#auctionTitle {
+    display: inline-block;
 
-        background-color: bisque;
-        margin: 20px;
-        padding: 40px;
-        flex-basis: calc(25% - 40px)
-    }
 
-    .auctions-container {
-        display: flex;
-        flex-wrap: column;
-        justify-content: center;
+    background-color: bisque;
+    margin: 20px;
+    padding: 40px;
+    flex-basis: calc(25% - 40px)
+}
 
-    }
+.auctions-container {
+    display: flex;
+    flex-wrap: column;
+    justify-content: center;
 
-    #category {
-        border: 1px solid black;
-        border-radius: 2px;
-        width: fit-content;
-        flex-basis: calc(25% - 40px);
-        padding: 40px;
-        text-align: center;
-        position: relative;
-        /* left: 800px;
+}
+
+#category {
+    border: 1px solid black;
+    border-radius: 2px;
+    width: fit-content;
+    flex-basis: calc(25% - 40px);
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    /* left: 800px;
     bottom: 400px; */
-    }
+}
 
-    #searchBar {
-        width: 300px;
-        height: 25px;
-        border: 2px solid black;
-        margin-top: 20px;
-        background-image: url("pics/searchIcon.png")
-    }
+#searchBar {
+    width: 300px;
+    height: 25px;
+    border: 2px solid black;
+    margin-top: 20px;
+    background-image: url("pics/searchIcon.png")
+}
