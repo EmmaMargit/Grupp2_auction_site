@@ -19,13 +19,7 @@
     /* background-image: url("pics/searchIcon.png") */
 }
 #auctionTitle {
-    <<<<<<< HEAD display: inline-block;
-
-    =======width: fit-content;
-
-
-    background-color: bisque;
-    >>>>>>>personal-branch
+   display: inline-block;
 }
 
 #category {
