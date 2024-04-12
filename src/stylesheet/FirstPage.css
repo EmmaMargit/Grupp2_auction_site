@@ -8,13 +8,12 @@
     flex-direction: column;
     align-items: center;
 
-
     flex-wrap: wrap;
-
-
+}
 
 #auctionTitle {
     display: inline-block;
+
 
     background-color: bisque;
     margin: 20px;
