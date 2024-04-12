@@ -54,6 +54,7 @@ function getSearchedAuctions(searchItem) {
   return (
     <>
       <div className="container">
+
       <form onSubmit={handleInputBtn}>
         <input type="text" id="searchBar" ref={inputField} onChange={handleInputField} placeholder="Search" />
         <button type="submit" id="searchBtn">Sök auktion</button>
@@ -70,6 +71,7 @@ function getSearchedAuctions(searchItem) {
             ))}
           </ul>
         )}
+
         <div id="category">
           <h2>Kategori</h2>
           <h4>Alla kategorier (13)</h4>
