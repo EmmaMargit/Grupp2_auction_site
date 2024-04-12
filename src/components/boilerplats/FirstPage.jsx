@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {useRef, useState, useEffect } from "react";
 import "../../stylesheet/FirstPage.css"
+import { Link } from "react-router-dom";
 
 function FirstPage() {
   // Alla auktioner
@@ -53,7 +54,7 @@ function getSearchedAuctions(searchItem) {
   return (
     <>
       <div className="container">
-        <form onSubmit={handleInputBtn}>
+      <form onSubmit={handleInputBtn}>
         <input type="text" id="searchBar" ref={inputField} onChange={handleInputField} placeholder="Search" />
         <button type="submit" id="searchBtn">Sök auktion</button>
         </form>
@@ -71,11 +72,13 @@ function getSearchedAuctions(searchItem) {
         )}
         <div id="category">
           <h2>Kategori</h2>
-          <h4>Alla kategorier   (13)</h4>
-          <h4>Konst  (3)</h4>
-          <h4>Klockor   (6)</h4>
-          <h4>Böcker   (4)</h4>
+          <h4>Alla kategorier (13)</h4>
+          <h4>Konst (3)</h4>
+          <h4>Klockor (6)</h4>
+          <h4>Böcker (4)</h4>
+
         </div>
+
       </div>
     </>
   );

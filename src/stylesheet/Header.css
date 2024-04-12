@@ -2,9 +2,8 @@ header {
   background-color: #1e253c;
   color: #fff;
   padding: 20px 0px 0px 0px;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
-
   left: 0;
   right: 0;
 }
@@ -12,11 +11,10 @@ header {
 .logo {
   margin: 0px 0px 150px 2%;
   font-size: 48px;
-  font-family: 'Pacifico', cursive;
+  font-family: "Pacifico", cursive;
 }
 
 .nav-links {
-
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -24,8 +22,7 @@ header {
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  background-color: #7D7878;
-
+  background-color: #7d7878;
 }
 
 .nav-links li {
