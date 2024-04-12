@@ -2,8 +2,12 @@ body {
     margin: 0%;
     position: relative;
 }
-#root {
+
+
+/* #root {
     display: flex;
     flex-direction: column;
-    min-height: 162vh; /* Sätt ett minsta höjd för att säkerställa att allt innehåll syns på skärmen */
-}
+    /* min-height: 162vh; */
+    /* Sätt ett minsta höjd för att säkerställa att allt innehåll syns på skärmen */
+/* }  */
+

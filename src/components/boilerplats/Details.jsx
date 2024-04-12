@@ -1,34 +1,27 @@
+import React from "react";
+import { useLocation } from "react-router-dom";
 
-// import React, { useEffect, useState } from "react";
+function Details() {
+  const location = useLocation();
+  const { auction } = location.state;
 
+  const formatDate = (dateString) => {
+    const postDate = new Date(dateString);
+    const formattedDate = `${postDate.getFullYear()}-${
+      postDate.getMonth() + 1
+    }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
+    return formattedDate;
+  };
 
-// function Details() {
-//   const [getAuctionById, setGetAuctionById] = useState([]);
+  return (
+    <div style={{ marginTop: "40vh" }}>
+      <h3>{auction.Title}</h3>
+      <p>Description: {auction.Description}</p>
+      <p>Start Date: {formatDate(auction.StartDate)}</p>
+      <p>End Date: {formatDate(auction.EndDate)}</p>
+      <p>Starting Price: {auction.StartingPrice}</p>
+    </div>
+  );
+}
 
-//   useEffect(() => {
-//     const getSpecifikAuction = () => {
-//       fetch(`https://auctioneer2.azurewebsites.net/auction/2wvu/${AuctionID}`)
-//         .then((res) => res.json())
-//         .then((data) => setGetAuctionById(data));
-//     };
-//     getSpecifikAuction();
-//   }, []);
-//   return (
-//     <div>
-//       <h1>Testar data</h1>
-//       <ul>
-//         {getAuctionById &&
-//           Array.isArray(getAuctionById) &&
-//           getAuctionById.map((item, index) => (
-//             <li key={index}>
-//               {item.Title} {item.Description}
-//             </li>
-//           ))}
-//       </ul>
-//     </div>
-//   );
-// }
-
-
-// export default Details;
-
+export default Details;
