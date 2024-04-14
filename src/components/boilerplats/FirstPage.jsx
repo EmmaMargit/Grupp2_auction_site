@@ -49,14 +49,14 @@ function FirstPage() {
               ))}
             </ul>
           )} </div>
-        <div id="category">
+        {/* <div id="category">
           <h2>Kategori</h2>
           <h4>Alla kategorier (13)</h4>
           <h4>Konst (3)</h4>
           <h4>Klockor (6)</h4>
           <h4>Böcker (4)</h4>
 
-        </div>
+        </div> */}
 
       </div>
     </>
