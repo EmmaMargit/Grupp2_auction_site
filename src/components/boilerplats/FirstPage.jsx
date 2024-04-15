@@ -19,6 +19,7 @@ function FirstPage() {
   const handleInputBtn = (event) => {
     event.preventDefault();
 
+
     const searchItem = inputField.current.value.trim();
     if (searchItem === "") {
       getAuctions();
