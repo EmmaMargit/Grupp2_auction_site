@@ -81,24 +81,6 @@ function FirstPage() {
             Sök auktion
           </button>
         </form>
-        {/* 
-        <h2>Alla auktioner</h2> */}
-        {/* {auctions && auctions.length > 0 && (
-          <ul>
-            {auctions.map((auction, index) => (
-              <ul key={index}>
-                {/* Vi valde att endast ha med nedan info på startsidan, detaljvyn visar mer info 
-                    Detta är bra, men eftersom vi har redan mappat över auktioner nedan så kan vi ändra  
-                    i nedan kod så att endast en vis info syns på startsidan. Jag föredrar att vi kommenterar
-                    bort denna för att vi har redan skapat css för nedan och vi vill inte ha dubbletter//Mohamed                
-                */}
-        {/* <h2 id="auctionTitle">{auction.Title}</h2>
-                <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
-                <h3 id="auctionEndDate">{auction.EndDate}</h3>
-              </ul>
-            ))} */}
-        {/* </ul> */}
-        {/* )}  */}
 
 
 
@@ -115,8 +97,8 @@ function FirstPage() {
                   {/* Vi valde att endast ha med nedan info på startsidan, detaljvyn visar mer info */}
                   <h2 id="auctionTitle">{auction.Title}</h2>
                 </Link>
-                <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
-                <h3 id="auctionEndDate">{auction.EndDate}</h3>
+                <h3 id="auctionStartingPrice">StartBud: {auction.StartingPrice}</h3>
+                <h3 id="auctionEndDate">Slutdatum: {auction.EndDate}</h3>
                 {auction.EndDate < new Date().toISOString() ? (
                   closedAuction = <h3 style={{ color: "red" }}>Avslutad auktion</h3>
                 ) : (
