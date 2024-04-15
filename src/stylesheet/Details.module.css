@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+}
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50vh;
+  margin-top: 10vh;
+  padding: 10px;
+  margin-left: 20vh;
+}
+
+.container h3 {
+  font-weight: bold;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailP {
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 10px;
+}
