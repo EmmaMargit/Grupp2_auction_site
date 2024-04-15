@@ -32,6 +32,7 @@ function FirstPage() {
         if (result && result.length > 0) {
           setAuctions(result);
         }
+        console.log(result)
       })
       .catch((error) => {
         console.error("Felmeddelande", error);
@@ -45,6 +46,7 @@ function FirstPage() {
       .then((result) => {
         // Uppdatera listan med alla auktioner med sökresultatet
         setAuctions(result.auctions);
+
       })
       .catch((error) => {
         console.error("Felmeddelande", error);
