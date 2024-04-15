@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import "../../stylesheet/FirstPage.css"
+import "../../stylesheet/FirstPage.css";
 import { Link } from "react-router-dom";
 
 function FirstPage() {
@@ -20,8 +20,7 @@ function FirstPage() {
   const handleInputBtn = (event) => {
     event.preventDefault();
     getSearchedAuctions(searchItem);
-  }
-
+  };
 
   // Funktion för att hämta alla auktioner
   function getAuctions() {
@@ -54,14 +53,20 @@ function FirstPage() {
   return (
     <>
       <div className="container">
-
         <form onSubmit={handleInputBtn}>
-          <input type="text" id="searchBar" ref={inputField} onChange={handleInputField} placeholder="Search" />
-          <button type="submit" id="searchBtn">Sök auktion</button>
+          <input
+            type="text"
+            id="searchBar"
+            ref={inputField}
+            onChange={handleInputField}
+            placeholder="Search"
+          />
+          <button type="submit" id="searchBtn">
+            Sök auktion
+          </button>
         </form>
 
         <div id="category">
-
           {auctions && auctions.length > 0 && (
             <ul>
               {auctions.map((auction, index) => (
@@ -74,10 +79,14 @@ function FirstPage() {
                   </Link>
                   <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
                   <h3 id="auctionEndDate">{auction.EndDate}</h3>
+                  {auction.EndDate < new Date().toISOString() && (
+                    <h3 style={{ color: "red" }}>Avslutad auktion</h3>
+                  )}
                 </ul>
               ))}
             </ul>
-          )} </div>
+          )}{" "}
+        </div>
         {/* <div id="category">
 >>>>>>> CSS-kungen
           <h2>Kategori</h2>
@@ -87,11 +96,9 @@ function FirstPage() {
           <h4>Böcker (4)</h4>
 
         </div> */}
-
       </div>
     </>
   );
 }
 
 export default FirstPage;
-
