@@ -74,14 +74,15 @@ function FirstPage() {
 
             onChange={handleInputField}
 
+
             placeholder="Search"
           />
           <button type="submit" id="searchBtn">
             Sök auktion
           </button>
         </form>
-
-        <h2>Alla auktioner</h2>
+        {/* 
+        <h2>Alla auktioner</h2> */}
         {/* {auctions && auctions.length > 0 && (
           <ul>
             {auctions.map((auction, index) => (
@@ -99,46 +100,56 @@ function FirstPage() {
         {/* </ul> */}
         {/* )}  */}
 
-        <div id="category">
-          {auctions && auctions.length > 0 && (
-            <ul>
-              {auctions.map((auction, index) => (
-                <ul key={index} id="auctionTitle">
-                  <Link
-                    to={`/auction/${auction.AuctionID}`}
-                    state={{ auction: auction }}
-                  >
-                    <h2 id="auctionTitle">{auction.Title}</h2>
-                  </Link>
-                  <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
-                  <h3 id="auctionEndDate">{auction.EndDate}</h3>
-                  {auction.EndDate < new Date().toISOString() ? (
-                    closedAuction = <h3 style={{ color: "red" }}>Avslutad auktion</h3>
-                  ) : (
-                    openAuction = <h3 style={{ color: "green" }}>Öppen auktion</h3>
-
-                  )}
-                </ul>
-              ))}
-            </ul>
-          )}{" "}
-        </div>
-        {/* <div id="category">
->>>>>>> CSS-kungen
-          <h2>Kategori</h2>
-          <h4>Alla kategorier (13)</h4>
-          <h4>Konst (3)</h4>
-          <h4>Klockor (6)</h4>
-          <h4>Böcker (4)</h4>
 
 
-        </div> */}
+        <h2>Alla auktioner</h2>
+
+        {auctions && auctions.length > 0 && (
+          <ul>
+            {auctions.map((auction, index) => (
+              <ul key={index} id="auctionTitle">
+                <Link
+                  to={`/auction/${auction.AuctionID}`}
+                  state={{ auction: auction }}
+                >
+                  {/* Vi valde att endast ha med nedan info på startsidan, detaljvyn visar mer info */}
+                  <h2 id="auctionTitle">{auction.Title}</h2>
+                </Link>
+                <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
+                <h3 id="auctionEndDate">{auction.EndDate}</h3>
+                {auction.EndDate < new Date().toISOString() ? (
+                  closedAuction = <h3 style={{ color: "red" }}>Avslutad auktion</h3>
+                ) : (
+                  <h3 style={{ color: "green" }}>Öppen auktion</h3>
+
+                )}
+              </ul>
+            ))}
+          </ul>
+
+          //    <div id="category">
+
+          //     <h2>Kategori</h2>
+          //     <h4>Alla kategorier (13)</h4>
+          //     <h4>Konst (3)</h4>
+          //     <h4>Klockor (6)</h4>
+          //     <h4>Böcker (4)</h4>
+
+
+
+          //   </div> * /
+
+          // </div>
+        )
+        };
 
       </div>
-    </>
 
 
-  );
+    </>)
 }
+
+
+
 
 export default FirstPage;
