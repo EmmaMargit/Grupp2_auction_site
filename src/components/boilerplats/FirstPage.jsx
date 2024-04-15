@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import "../../stylesheet/FirstPage.css"
+import "../../stylesheet/FirstPage.css";
 import { Link } from "react-router-dom";
 
 function FirstPage() {
@@ -18,6 +18,7 @@ function FirstPage() {
   // Eventhandler när man sökt på specifik auktion eller ej
   const handleInputBtn = (event) => {
     event.preventDefault();
+
     const searchItem = inputField.current.value.trim();
     if (searchItem === "") {
       getAuctions();
@@ -54,7 +55,6 @@ function FirstPage() {
   return (
     <>
       <div className="container">
-
         <form onSubmit={handleInputBtn}>
           <input
             type="text"
@@ -66,8 +66,10 @@ function FirstPage() {
             Sök auktion
           </button>
         </form>
+
     
           <h2>Alla auktioner</h2>
+
           {auctions && auctions.length > 0 && (
             <ul>
               {auctions.map((auction, index) => (
@@ -81,23 +83,25 @@ function FirstPage() {
                   </Link>
                   <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
                   <h3 id="auctionEndDate">{auction.EndDate}</h3>
+                  {auction.EndDate < new Date().toISOString() && (
+                    <h3 style={{ color: "red" }}>Avslutad auktion</h3>
+                  )}
                 </ul>
               ))}
             </ul>
-          )} </div>
-        <div id="category">
+
+         <div id="category">
 
           <h2>Kategori</h2>
           <h4>Alla kategorier (13)</h4>
           <h4>Konst (3)</h4>
           <h4>Klockor (6)</h4>
           <h4>Böcker (4)</h4>
-
         </div>
-      </div>
+        </div> 
+
     </>
   );
 }
 
 export default FirstPage;
-

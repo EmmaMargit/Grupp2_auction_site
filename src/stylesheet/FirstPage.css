@@ -1,60 +1,69 @@
 .container {
-    min-height: 100vh;
-    padding: 20px;
-    background-color: aqua;
-    top: 275px;
-    width: 98, 2%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: aqua;
+  top: 275px;
+  width: 98, 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-
 #auctionTitle {
-    display: inline-block;
-    background-color: bisque;
-    margin: 20px;
-    padding: 40px;
-    flex-basis: calc(25% - 40px)
+  display: inline-block;
+  background-color: bisque;
+  margin: 20px;
+  padding: 40px;
+  flex-basis: calc(25% - 40px);
 }
 
 .auctions-container {
-
-    flex-wrap: column;
-    justify-content: center;
-
+  flex-wrap: column;
+  justify-content: center;
 }
 
 #category {
-    border: 1px solid black;
-    border-radius: 2px;
-    width: fit-content;
-    flex-basis: calc(25% - 40px);
-    padding: 40px;
-    text-align: center;
-    position: relative;
-    /* left: 800px;
+  border: 1px solid black;
+  border-radius: 2px;
+  width: fit-content;
+  flex-basis: calc(25% - 40px);
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  /* left: 800px;
     bottom: 400px; */
 }
 
+
+
+
+#container {
+  width: 300px;
+  height: 25px;
+  border: 2px solid black;
+  border-radius: 0.2rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 5px;
+  text-align: center;
+  font-size: 15px;
+  background-image: url("pics/searchIcon.png")
+}
+
 #searchBar {
-    width: 300px;
-    height: 25px;
-    border: 2px solid black;
-    border-radius: 0.2rem;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-right: 5px;
-    text-align: center;
-    font-size: 15px;
-    background-image: url("pics/searchIcon.png")
+
+  width: 300px;
+  height: 25px;
+  border: 2px solid black;
+  margin-top: 20px;
+  background-image: url("pics/searchIcon.png");
 }
 
 #searchBtn {
-    width: 120px;
-    height: 29px;
-    border: 1px solid black;
-    border-radius: 0.2rem;
-    font-size: 15px;
+  width: 120px;
+  height: 29px;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  font-size: 15px;
 }
