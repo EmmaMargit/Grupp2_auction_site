@@ -95,34 +95,6 @@ function FirstPage() {
                   state={{ auction: auction }}
                 >
                   {/* Vi valde att endast ha med nedan info på startsidan, detaljvyn visar mer info */}
-
-                    <h2 id="auctionTitle">{auction.Title}</h2>
-                  </Link>
-                  <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
-                  <h3 id="auctionEndDate">{auction.EndDate}</h3>
-                  {auction.EndDate < new Date().toISOString() && (
-                    <h3 style={{ color: "red" }}>Avslutad auktion</h3>
-                  )}
-                </ul>
-              ))}
-            </ul>
-          )}
-
-         <div id="category">
-
-          <h2>Kategori</h2>
-          <h4>Alla kategorier (13)</h4>
-          <h4>Konst (3)</h4>
-          <h4>Klockor (6)</h4>
-          <h4>Böcker (4)</h4>
-        </div>
-        </div> 
-        
-
-    </>
-  );
-  }
-=======
                   <h2 id="auctionTitle">{auction.Title}</h2>
                 </Link>
                 <h3 id="auctionStartingPrice">StartBud: {auction.StartingPrice}</h3>
