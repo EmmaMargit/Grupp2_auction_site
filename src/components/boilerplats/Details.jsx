@@ -5,12 +5,12 @@ import { useLocation } from "react-router-dom";
 function Details() {
   const location = useLocation();
   const { auction } = location.state;
+  console.log(auction)
 
   const formatDate = (dateString) => {
     const postDate = new Date(dateString);
-    const formattedDate = `${postDate.getFullYear()}-${
-      postDate.getMonth() + 1
-    }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
+    const formattedDate = `${postDate.getFullYear()}-${postDate.getMonth() + 1
+      }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
     return formattedDate;
   };
 

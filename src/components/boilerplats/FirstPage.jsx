@@ -15,6 +15,10 @@ function FirstPage() {
     getAuctions();
   }, []);
 
+  const handleInputField = (event) => {
+    const searchItem = inputField.current.value;
+  };
+
   // Eventhandler när man sökt på specifik auktion eller ej
   const handleInputBtn = (event) => {
     event.preventDefault();
@@ -26,6 +30,7 @@ function FirstPage() {
     } else {
       getSearchedAuctions(searchItem);
     }
+
   };
 
   // Funktion för att hämta alla auktioner
@@ -45,13 +50,18 @@ function FirstPage() {
       });
   }
 
+
   // Funktion för att hämta specifik auktion efter sökning
   function getSearchedAuctions(searchItem) {
     const specificAuctions = allAuctions.filter((auction) =>
       auction.Title.toLowerCase().includes(searchItem.toLowerCase())
     );
     setAuctions(specificAuctions); // Uppdatera state med de sökta auktionsorden
+
   }
+
+  let openAuction = "";
+  let closedAuction = "";
 
   return (
     <>
@@ -61,6 +71,10 @@ function FirstPage() {
             type="text"
             id="searchBar"
             ref={inputField}
+
+            onChange={handleInputField}
+
+
             placeholder="Search"
           />
           <button type="submit" id="searchBtn">
@@ -68,18 +82,20 @@ function FirstPage() {
           </button>
         </form>
 
-    
-          <h2>Alla auktioner</h2>
 
-          {auctions && auctions.length > 0 && (
-            <ul>
-              {auctions.map((auction, index) => (
-                <ul key={index} id="auctionTitle">
-                  <Link
-                    to={`/auction/${auction.AuctionID}`}
-                    state={{ auction: auction }}
-                  >
+
+        <h2>Alla auktioner</h2>
+
+        {auctions && auctions.length > 0 && (
+          <ul>
+            {auctions.map((auction, index) => (
+              <ul key={index} id="auctionTitle">
+                <Link
+                  to={`/auction/${auction.AuctionID}`}
+                  state={{ auction: auction }}
+                >
                   {/* Vi valde att endast ha med nedan info på startsidan, detaljvyn visar mer info */}
+
                     <h2 id="auctionTitle">{auction.Title}</h2>
                   </Link>
                   <h3 id="auctionStartingPrice">{auction.StartingPrice}</h3>
@@ -106,5 +122,44 @@ function FirstPage() {
     </>
   );
   }
+=======
+                  <h2 id="auctionTitle">{auction.Title}</h2>
+                </Link>
+                <h3 id="auctionStartingPrice">StartBud: {auction.StartingPrice}</h3>
+                <h3 id="auctionEndDate">Slutdatum: {auction.EndDate}</h3>
+                {auction.EndDate < new Date().toISOString() ? (
+                  closedAuction = <h3 style={{ color: "red" }}>Avslutad auktion</h3>
+                ) : (
+                  <h3 style={{ color: "green" }}>Öppen auktion</h3>
+
+                )}
+              </ul>
+            ))}
+          </ul>
+
+          //    <div id="category">
+
+          //     <h2>Kategori</h2>
+          //     <h4>Alla kategorier (13)</h4>
+          //     <h4>Konst (3)</h4>
+          //     <h4>Klockor (6)</h4>
+          //     <h4>Böcker (4)</h4>
+
+
+
+          //   </div> * /
+
+          // </div>
+        )
+        };
+
+      </div>
+
+
+    </>)
+}
+
+
+
 
 export default FirstPage;
