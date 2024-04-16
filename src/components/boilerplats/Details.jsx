@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../stylesheet/Details.module.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 function Details() {
   const location = useLocation();
   const { auction } = location.state;
-  console.log(auction)
+
 
   const formatDate = (dateString) => {
     const postDate = new Date(dateString);
@@ -13,6 +13,27 @@ function Details() {
       }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
     return formattedDate;
   };
+
+  const { id } = useParams();
+  const [bids, setBids] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://auctioneer2.azurewebsites.net/bid/2wvu/${id}`)
+
+      .then((response) => {
+        return response.json()
+      })
+
+      .then((data) => {
+        setBids(data)
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error("Error fetching bids: ", error);
+      })
+
+  }, [id])
+
 
   return (
     <div className={styles.wrapper}>
@@ -34,6 +55,18 @@ function Details() {
           <p className={styles.label}>Starting Price:</p>
           <p>{auction.StartingPrice}</p>
         </div>
+        <h3>Bids</h3>
+        <ul>
+          {bids.map((bid, index) => (
+            <li key={index}>
+              Bidder: {bid.Bidder},<br />
+              Amount: {bid.Amount} kr
+              <br /><br />
+
+            </li>
+          ))}
+
+        </ul>
       </div>
     </div>
   );
