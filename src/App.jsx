@@ -6,6 +6,7 @@ import "./stylesheet/App.css";
 import Details from "./components/boilerplats/Details";
 import Header from "./components/boilerplats/Header";
 import FirstPage from "./components/boilerplats/FirstPage";
+import CreateAuctionForm from "./components/boilerplats/Skapa-annons";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<FirstPage />} />
         <Route path="/auction/:id" element={<Details />} />
+        <Route path="/create-auction" element={<CreateAuctionForm />} />
       </Routes>
       <Footer />
     </>
