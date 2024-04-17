@@ -96,22 +96,22 @@ function Details() {
         </div>
       ) : (
         <div className={styles.bids}>
-          <h3>Bids</h3>
+          <h3 >Bids</h3>
           <ul>
             {bids.map((bid, index) => (
-              <li key={index}>
-                Bidder: {bid.Bidder}<br />
-                Amount: {bid.Amount} kr
+              <ul className={styles.bidiInfo} key={index}>
+                <span>{bid.Bidder}</span>
+                <span>{bid.Amount} kr</span>
                 <br />
                 <br />
-              </li>
+              </ul>
             ))}
           </ul>
           <input
-              type="number"
-              ref={userBidRef}
-            />
-            <button onClick={placeBid}>Place Bid</button>
+            type="number"
+            ref={userBidRef}
+          />
+          <button onClick={placeBid}>Place Bid</button>
         </div>
       )}
 
