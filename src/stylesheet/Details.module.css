@@ -1,17 +1,27 @@
 body {
   margin: 0;
 }
+
 .wrapper {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 50vh;
-  margin-top: 10vh;
+  margin: 100px;
   padding: 10px;
-  margin-left: 20vh;
+  display: flex;
+  justify-content: space-between;
+
+
 }
 
-.container h3 {
+.info {
+  width: fit-content;
+  margin-left: 20px;
+}
+
+.bids {
+  width: fit-content;
+
+}
+
+.info h3 {
   font-weight: bold;
   border-bottom: 1px solid black;
   display: flex;
@@ -22,9 +32,17 @@ body {
 .detailP {
   display: flex;
   align-items: center;
+
 }
 
 .label {
   font-weight: bold;
   margin-right: 10px;
+}
+
+
+
+.bids h3 {
+  text-align: center;
+  border-bottom: 1px solid black;
 }
