@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid'; 
 
 const CreateAuctionForm = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     GroupCode: '2wvu',
     Title: '',
     Description: '',
@@ -11,7 +11,9 @@ const CreateAuctionForm = () => {
     EndDate: '',
     CreatedBy: '',
     id: uuidv4(),
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
     setFormData({
@@ -28,7 +30,7 @@ const CreateAuctionForm = () => {
       ...formData,
       StartingPrice: startBidValue
     });
-    console.log('FormData before sending:', formData);
+    //console.log('FormData before sending:', formData);
     
     fetch('https://auctioneer2.azurewebsites.net/auction/2wvu', {
       method: 'POST',
@@ -45,6 +47,11 @@ const CreateAuctionForm = () => {
     })
     .then(data => {
       console.log('Auction created:', data);
+      
+      setFormData({          // Reset form fields after successful submission
+        ...initialFormData,
+        id: uuidv4()           // Generate new unique id
+      });
     })
     .catch(error => {
       console.error('There was an error creating the auction:', error);
@@ -53,7 +60,7 @@ const CreateAuctionForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-        <label>
+      <label>
         Title:
         <input
           type="text"
@@ -75,8 +82,9 @@ const CreateAuctionForm = () => {
         <input
           type="number"
           name="StartingPrice"
-          value={formData.StartBid}
+          value={formData.StartingPrice}
           onChange={handleChange}
+          min="0"
         />
       </label>
       <label>
