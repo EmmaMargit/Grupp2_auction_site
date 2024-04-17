@@ -116,7 +116,7 @@ function FirstPage() {
           <h4>Konst (3)</h4>
           <h4>Klockor (6)</h4>
           <h4>Böcker (4)</h4>
-        </div>
+        </div> 
       </div>
     </>
   );
