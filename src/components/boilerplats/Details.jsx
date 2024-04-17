@@ -8,9 +8,8 @@ function Details() {
 
   const formatDate = (dateString) => {
     const postDate = new Date(dateString);
-    const formattedDate = `${postDate.getFullYear()}-${
-      postDate.getMonth() + 1
-    }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
+    const formattedDate = `${postDate.getFullYear()}-${postDate.getMonth() + 1
+      }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
     return formattedDate;
   };
 
@@ -42,14 +41,14 @@ function Details() {
       const highestBid =
         bids.length > 0 // kontroll om det finns några bud
           ? bids.reduce(
-              (
-                previousHighestBid,
-                currentBid // jämföra tidigare högsta budet med nuvarande but
-              ) =>
-                previousHighestBid.Amount > currentBid.Amount
-                  ? previousHighestBid
-                  : currentBid
-            )
+            (
+              previousHighestBid,
+              currentBid // jämföra tidigare högsta budet med nuvarande but
+            ) =>
+              previousHighestBid.Amount > currentBid.Amount
+                ? previousHighestBid
+                : currentBid
+          )
           : null;
       setHighestBid(highestBid); // sätter högsta budet i state
     }
@@ -57,11 +56,15 @@ function Details() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
+      <div className={styles.info}>
         <h3>{auction.Title}</h3>
         <div className={styles.detailP}>
           <p className={styles.label}>Description:</p>
           <p>{auction.Description}</p>
+        </div>
+        <div className={styles.detailP}>
+          <p className={styles.label}>Starting Price:</p>
+          <p>{auction.StartingPrice} kr</p>
         </div>
         <div className={styles.detailP}>
           <p className={styles.label}>Start Date:</p>
@@ -71,38 +74,35 @@ function Details() {
           <p className={styles.label}>End Date:</p>
           <p>{formatDate(auction.EndDate)}</p>
         </div>
-        <div className={styles.detailP}>
-          <p className={styles.label}>Starting Price:</p>
-          <p>{auction.StartingPrice}</p>
-        </div>
-        {auctionClosed ? ( // om auctionen är stängd och har bud visa bud och högsta budgivare
-          <div className={styles.detailP}>
-            <p className={styles.label}>Winning bid:</p>
-            {highestBid ? (
-              <div className={styles.detailP}>
-                <p className={styles.label}>Bidder: {highestBid.Bidder},</p>
-                <p className={styles.label}>Amount: {highestBid.Amount} kr</p>
-              </div>
-            ) : (
-              <p>No bids for this auction, auction is closed!</p> // om auktionen är stängd men inte har bud visa meddelandet!
-            )}
-          </div>
-        ) : (
-          <div>
-            <h3>Bids</h3>
-            <ul>
-              {bids.map((bid, index) => (
-                <li key={index}>
-                  Bidder: {bid.Bidder},<br />
-                  Amount: {bid.Amount} kr
-                  <br />
-                  <br />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
+      {auctionClosed ? ( // om auctionen är stängd och har bud visa bud och högsta budgivare
+        <div className={styles.detailP}>
+          <p className={styles.label}>Winning bid:</p>
+          {highestBid ? (
+            <div className={styles.detailP}>
+              <p className={styles.label}>Bidder: {highestBid.Bidder},</p>
+              <p className={styles.label}>Amount: {highestBid.Amount} kr</p>
+            </div>
+          ) : (
+            <p>No bids for this auction, auction is closed!</p> // om auktionen är stängd men inte har bud visa meddelandet!
+          )}
+        </div>
+      ) : (
+        <div className={styles.bids}>
+          <h3>Bids</h3>
+          <ul>
+            {bids.map((bid, index) => (
+              <li key={index}>
+                Bidder: {bid.Bidder}<br />
+                Amount: {bid.Amount} kr
+                <br />
+                <br />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
     </div>
   );
 }
