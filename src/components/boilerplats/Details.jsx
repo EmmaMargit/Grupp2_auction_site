@@ -81,17 +81,13 @@ function Details() {
           <p>{formatDate(auction.EndDate)}</p>
         </div>
       </div>
-      {auctionClosed ? ( // om auctionen är stängd och har bud visa bud och högsta budgivare
+
+      {highestBid ? (
+
         <div className={styles.detailP}>
           <p className={styles.label}>Winning bid:</p>
-          {highestBid ? (
-            <div className={styles.detailP}>
-              <p className={styles.label}>Bidder: {highestBid.Bidder},</p>
-              <p className={styles.label}>Amount: {highestBid.Amount} kr</p>
-            </div>
-          ) : (
-            <p>No bids for this auction, auction is closed!</p> // om auktionen är stängd men inte har bud visa meddelandet!
-          )}
+          <p className={styles.label}>Bidder: {highestBid.Bidder},</p>
+          <p className={styles.label}>Amount: {highestBid.Amount} kr</p>
         </div>
       ) : (
         <div className={styles.bids}>
@@ -101,13 +97,7 @@ function Details() {
               <ul className={styles.bidiInfo} key={index}>
                 <span>{bid.Bidder}</span>
                 <span>{bid.Amount} kr</span>
-                <li key={index}>
-                  Bidder: {bid.Bidder}
-                  <br />
-                  Amount: {bid.Amount} kr
-                  <br />
-                  <br />
-                </li>
+
               </ul>
             ))}
           </ul>
@@ -119,8 +109,10 @@ function Details() {
         </div>
       )}
     </div>
-  );
+  )
 }
+
+
 
 export default Details;
 
