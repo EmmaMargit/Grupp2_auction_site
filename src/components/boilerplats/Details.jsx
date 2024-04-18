@@ -8,9 +8,8 @@ function Details() {
 
   const formatDate = (dateString) => {
     const postDate = new Date(dateString);
-    const formattedDate = `${postDate.getFullYear()}-${
-      postDate.getMonth() + 1
-    }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
+    const formattedDate = `${postDate.getFullYear()}-${postDate.getMonth() + 1
+      }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
     return formattedDate;
   };
 
@@ -38,14 +37,14 @@ function Details() {
       const highestBid =
         bids.length > 0 // kontroll om det finns några bud
           ? bids.reduce(
-              (
-                previousHighestBid,
-                currentBid // jämföra tidigare högsta budet med nuvarande but
-              ) =>
-                previousHighestBid.Amount > currentBid.Amount
-                  ? previousHighestBid
-                  : currentBid
-            )
+            (
+              previousHighestBid,
+              currentBid // jämföra tidigare högsta budet med nuvarande but
+            ) =>
+              previousHighestBid.Amount > currentBid.Amount
+                ? previousHighestBid
+                : currentBid
+          )
           : null;
       setHighestBid(highestBid);
     }
@@ -96,19 +95,25 @@ function Details() {
         </div>
       ) : (
         <div className={styles.bids}>
-          <h3>Bids</h3>
+          <h3 >Bids</h3>
           <ul>
             {bids.map((bid, index) => (
               <li key={index}>
                 Bidder: {bid.Bidder}
                 <br />
-                Amount: {bid.Amount} kr
-                <br />
-                <br />
+                <ul className={styles.bidiInfo} key={index}>
+                  <span>{bid.Bidder}</span>
+                  <span>{bid.Amount} kr</span>
+                  <br />
+                  <br />
+                </ul>
               </li>
             ))}
           </ul>
-          <input type="number" ref={userBidRef} />
+          <input
+            type="number"
+            ref={userBidRef}
+          />
           <button onClick={placeBid}>Place Bid</button>
         </div>
       )}
