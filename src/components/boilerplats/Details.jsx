@@ -1,26 +1,29 @@
 import React, { useEffect, useState, useRef } from "react";
 import styles from "../../stylesheet/Details.module.css";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 
 function Details() {
   const location = useLocation();
   const { auction } = location.state;
+  const currentDateForDeleting = new Date();
+  const endDateForDeleting = new Date(auction.EndDate);
 
   const formatDate = (dateString) => {
     const postDate = new Date(dateString);
-    const formattedDate = `${postDate.getFullYear()}-${postDate.getMonth() + 1
-      }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
+    const formattedDate = `${postDate.getFullYear()}-${
+      postDate.getMonth() + 1
+    }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
     return formattedDate;
   };
 
-  const { id } = useParams();
+  const { Id } = useParams();
   const [bids, setBids] = useState([]);
   const [highestBid, setHighestBid] = useState(null);
-  const [auctionClosed, setAuctionClosed] = useState([]);
   const userBidRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`https://auctioneer2.azurewebsites.net/bid/2wvu/${id}`)
+    fetch(`https://auctioneer2.azurewebsites.net/bid/2wvu/${Id}`)
       .then((response) => response.json())
       .then((data) => {
         setBids(data);
@@ -28,7 +31,7 @@ function Details() {
       .catch((error) => {
         console.error("Error fetching bids: ", error);
       });
-  }, [id]);
+  }, [Id]);
 
   useEffect(() => {
     const currentDate = new Date();
@@ -37,14 +40,14 @@ function Details() {
       const highestBid =
         bids.length > 0 // kontroll om det finns några bud
           ? bids.reduce(
-            (
-              previousHighestBid,
-              currentBid // jämföra tidigare högsta budet med nuvarande but
-            ) =>
-              previousHighestBid.Amount > currentBid.Amount
-                ? previousHighestBid
-                : currentBid
-          )
+              (
+                previousHighestBid,
+                currentBid // jämföra tidigare högsta budet med nuvarande but
+              ) =>
+                previousHighestBid.Amount > currentBid.Amount
+                  ? previousHighestBid
+                  : currentBid
+            )
           : null;
       setHighestBid(highestBid);
     }
@@ -58,6 +61,21 @@ function Details() {
     } else {
       alert("Your bid is too low or invalid.");
     }
+  };
+
+  const deleteAuction = () => {
+    const deleteURL = `https://auctioneer2.azurewebsites.net/auction/2wvu/${Id}`;
+    console.log("DELETE URL:", deleteURL);
+    fetch(deleteURL, {
+      method: "DELETE",
+    }).then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to delete");
+      } else {
+        console.log("Successfully deleted");
+        navigate("/");
+      }
+    });
   };
 
   return (
@@ -83,7 +101,6 @@ function Details() {
       </div>
 
       {highestBid ? (
-
         <div className={styles.detailP}>
           <p className={styles.label}>Winning bid:</p>
           <p className={styles.label}>Bidder: {highestBid.Bidder},</p>
@@ -91,28 +108,28 @@ function Details() {
         </div>
       ) : (
         <div className={styles.bids}>
-          <h3 >Bids</h3>
+          <h3>Bids</h3>
           <ul>
             {bids.map((bid, index) => (
               <ul className={styles.bidiInfo} key={index}>
                 <span>{bid.Bidder}</span>
                 <span>{bid.Amount} kr</span>
-
               </ul>
             ))}
           </ul>
-          <input
-            type="number"
-            ref={userBidRef}
-          />
+          <input type="number" ref={userBidRef} />
           <button onClick={placeBid}>Place Bid</button>
         </div>
       )}
+      {bids.length === 0 && currentDateForDeleting > endDateForDeleting ? (
+        <div>
+          <p>Det finns inga bud ännu, du kan ta bort auktionen</p>
+          <button onClick={deleteAuction}>Delete Auction</button>
+        </div>
+      ) : null}
     </div>
-  )
+  );
 }
-
-
 
 export default Details;
 
