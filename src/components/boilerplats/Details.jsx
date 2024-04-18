@@ -8,15 +8,16 @@ function Details() {
 
   const formatDate = (dateString) => {
     const postDate = new Date(dateString);
-    const formattedDate = `${postDate.getFullYear()}-${postDate.getMonth() + 1
-      }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
+    const formattedDate = `${postDate.getFullYear()}-${
+      postDate.getMonth() + 1
+    }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
     return formattedDate;
   };
 
   const { id } = useParams();
   const [bids, setBids] = useState([]);
   const [highestBid, setHighestBid] = useState(null);
-  const [auctionClosed, setAuctionClosed] = useState(false);
+  const [auctionClosed, setAuctionClosed] = useState([]);
   const userBidRef = useRef(null);
 
   useEffect(() => {
@@ -34,27 +35,26 @@ function Details() {
     const currentDate = new Date();
     const endDate = new Date(auction.EndDate);
     if (currentDate > endDate) {
-      setAuctionClosed(true);
       const highestBid =
         bids.length > 0 // kontroll om det finns några bud
           ? bids.reduce(
-            (
-              previousHighestBid,
-              currentBid // jämföra tidigare högsta budet med nuvarande but
-            ) =>
-              previousHighestBid.Amount > currentBid.Amount
-                ? previousHighestBid
-                : currentBid
-          )
+              (
+                previousHighestBid,
+                currentBid // jämföra tidigare högsta budet med nuvarande but
+              ) =>
+                previousHighestBid.Amount > currentBid.Amount
+                  ? previousHighestBid
+                  : currentBid
+            )
           : null;
       setHighestBid(highestBid);
     }
-  }, [auction.EndDate, bids]);
+  }, [bids]);
 
   const placeBid = () => {
     const userBid = parseInt(userBidRef.current.value);
     if (!isNaN(userBid) && userBid > (highestBid ? highestBid.Amount : 0)) {
-      userBidRef.current.value = ''; // Nollställ input efter att budet har lagts
+      userBidRef.current.value = ""; // Nollställ input efter att budet har lagts
       console.log("Bid placed:", userBid);
     } else {
       alert("Your bid is too low or invalid.");
@@ -102,6 +102,10 @@ function Details() {
               <ul className={styles.bidiInfo} key={index}>
                 <span>{bid.Bidder}</span>
                 <span>{bid.Amount} kr</span>
+              <li key={index}>
+                Bidder: {bid.Bidder}
+                <br />
+                Amount: {bid.Amount} kr
                 <br />
                 <br />
               </ul>
@@ -114,16 +118,11 @@ function Details() {
           <button onClick={placeBid}>Place Bid</button>
         </div>
       )}
-
     </div>
   );
 }
 
 export default Details;
-
-
-
-
 
 // import React, { useEffect, useState } from "react";
 // import styles from "../../stylesheet/Details.module.css";
