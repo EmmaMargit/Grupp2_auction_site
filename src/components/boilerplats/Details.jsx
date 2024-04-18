@@ -18,6 +18,8 @@ function Details() {
   const [highestBid, setHighestBid] = useState(null);
   const [auctionClosed, setAuctionClosed] = useState(false);
   const userBidRef = useRef(null);
+  const userNameRef = useRef(null); // Ref för att hämta värdet från namninput
+  const [bidErrorMessage, setBidErrorMessage] = useState('');
 
   useEffect(() => {
     fetch(`https://auctioneer2.azurewebsites.net/bid/2wvu/${id}`)
@@ -36,16 +38,12 @@ function Details() {
     if (currentDate > endDate) {
       setAuctionClosed(true);
       const highestBid =
-        bids.length > 0 // kontroll om det finns några bud
-          ? bids.reduce(
-            (
-              previousHighestBid,
-              currentBid // jämföra tidigare högsta budet med nuvarande but
-            ) =>
+        bids.length > 0
+          ? bids.reduce((previousHighestBid, currentBid) =>
               previousHighestBid.Amount > currentBid.Amount
                 ? previousHighestBid
                 : currentBid
-          )
+            )
           : null;
       setHighestBid(highestBid);
     }
@@ -53,11 +51,17 @@ function Details() {
 
   const placeBid = () => {
     const userBid = parseInt(userBidRef.current.value);
-    if (!isNaN(userBid) && userBid > (highestBid ? highestBid.Amount : 0)) {
+    const userName = userNameRef.current.value; // Hämta värdet från namninput
+    if (userBid > (Math.max(...bids.map(o => o.Amount)) || auction.StartingPrice)) {
       userBidRef.current.value = ''; // Nollställ input efter att budet har lagts
-      console.log("Bid placed:", userBid);
+      userNameRef.current.value = ''; // Nollställ namninput efter att budet har lagts
+      setBidErrorMessage(''); // Återställ felmeddelandet om budet är tillräckligt högt
+      // TODO: Gör en fetch - POST bid
+      // Posta mot serven 
+      // uppdatera statet
+      console.log("Bid placed by", userName, ":", userBid); // Logga budet och användarens namn
     } else {
-      alert("Your bid is too low or invalid.");
+      setBidErrorMessage('Your bid is too low or invalid.');
     }
   };
 
@@ -82,7 +86,7 @@ function Details() {
           <p>{formatDate(auction.EndDate)}</p>
         </div>
       </div>
-      {auctionClosed ? ( // om auctionen är stängd och har bud visa bud och högsta budgivare
+      {auctionClosed ? (
         <div className={styles.detailP}>
           <p className={styles.label}>Winning bid:</p>
           {highestBid ? (
@@ -91,7 +95,7 @@ function Details() {
               <p className={styles.label}>Amount: {highestBid.Amount} kr</p>
             </div>
           ) : (
-            <p>No bids for this auction, auction is closed!</p> // om auktionen är stängd men inte har bud visa meddelandet!
+            <p>No bids for this auction, auction is closed!</p>
           )}
         </div>
       ) : (
@@ -107,19 +111,24 @@ function Details() {
               </li>
             ))}
           </ul>
-          <input
-              type="number"
-              ref={userBidRef}
-            />
-            <button onClick={placeBid}>Place Bid</button>
+          {bidErrorMessage && <p className={styles.errorMessage}>{bidErrorMessage}</p>}
+          
+          {/* Input för budgivarens namn */}
+          <input type="text" ref={userNameRef} /> 
+
+          {/* Input för budgivarens bud */}
+          <input type="number" ref={userBidRef} />
+
+          <button onClick={placeBid}>Place Bid</button>
         </div>
       )}
-
     </div>
   );
 }
 
 export default Details;
+
+
 
 
 
