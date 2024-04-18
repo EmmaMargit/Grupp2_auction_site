@@ -1,59 +1,73 @@
-
 .container {
-    min-height: 100vh;
-    padding: 20px;
-  
-    top: 275px;
-    width: 98, 2%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  #auctionTitle {
-    display: inline-block;
+  min-height: 100vh;
+  padding: 20px;
+  top: 275px;
+  width: 98, 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#auctionTitle {
+  display: inline-block;
   border: 1px solid black;
-    margin: 20px;
-    padding: 40px;
-    flex-basis: calc(25% - 40px);
-  }
+  margin: 20px;
+  padding: 40px;
+  flex-basis: calc(25% - 40px);
+  /* background-color: #1e253c; */
+  background-color: #404040;
+}
 
-  #auctionTitle h2 {
-border: none;
-  }
-  
-  .auctions-container {
-    flex-wrap: column;
-    justify-content: center;
-  }
-  
-  #category {
-    border: 1px solid black;
-    border-radius: 2px;
-    width: fit-content;
-    flex-basis: calc(25% - 40px);
-    padding: 40px;
-    text-align: center;
-    position: relative;
-    /* left: 800px;
+#auctionTitle h2 {
+  border: none;
+  color: white;
+}
+
+#auctionTitle h2:hover {
+  color: lightskyblue;
+  text-decoration: underline;
+}
+#auctionTitle h2:active {
+  color: blueviolet;
+}
+
+#auctionStartingPrice,
+#auctionEndDate {
+  color: white;
+}
+
+/*.auctions-container {
+  flex-wrap: column;
+  justify-content: center;
+} */
+
+#category {
+  border: 1px solid black;
+  border-radius: 2px;
+  width: fit-content;
+  flex-basis: calc(25% - 40px);
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  /* left: 800px;
       bottom: 400px; */
-  }
-  
+}
 
-  
-  #searchBar {
-    width: 300px;
-    height: 25px;
-    border: 2px solid black;
-    margin-top: 20px;
-    background-image: url("pics/searchIcon.png");
-  }
-  
-  #searchBtn {
-    width: 120px;
-    height: 29px;
-    border: 1px solid black;
-    border-radius: 0.2rem;
-    font-size: 15px;
-  }
+#searchBar {
+  width: 300px;
+  height: 25px;
+  border: 2px solid black;
+  margin-top: 20px;
+  background-image: url("pics/searchIcon.png");
+}
+
+#searchBtn {
+  width: 120px;
+  height: 29px;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  font-size: 15px;
+  border-radius: 5px;
+  margin-left: 8px;
+}
