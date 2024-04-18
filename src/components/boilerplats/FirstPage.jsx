@@ -62,9 +62,8 @@ function FirstPage() {
   //Ändra stil på datumet
   const formatDate = (dateString) => {
     const postDate = new Date(dateString);
-    const formattedDate = `${postDate.getFullYear()}-${
-      postDate.getMonth() + 1
-    }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
+    const formattedDate = `${postDate.getFullYear()}-${postDate.getMonth() + 1
+      }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
     return formattedDate;
   };
 
@@ -100,23 +99,23 @@ function FirstPage() {
                 <h3 id="auctionEndDate">{formatDate(auction.EndDate)}</h3>
                 {auction.EndDate < new Date().toISOString() ? (
                   (closedAuction = (
-                    <h3 style={{ color: "red" }}>Avslutad auktion</h3>
+                    <h3 style={{ color: "red" }}>Closed auction</h3>
                   ))
                 ) : (
-                  <h3 style={{ color: "green" }}>Öppen auktion</h3>
+                  <h3 style={{ color: "green" }}>Open auction</h3>
                 )}
               </ul>
             ))}
           </ul>
         )}
 
-        <div id="category">
+        {/* <div id="category">
           <h2>Kategori</h2>
           <h4>Alla kategorier (13)</h4>
           <h4>Konst (3)</h4>
           <h4>Klockor (6)</h4>
           <h4>Böcker (4)</h4>
-        </div> 
+        </div>  */}
       </div>
     </>
   );

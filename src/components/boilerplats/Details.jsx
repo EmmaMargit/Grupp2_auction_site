@@ -10,9 +10,8 @@ function Details() {
 
   const formatDate = (dateString) => {
     const postDate = new Date(dateString);
-    const formattedDate = `${postDate.getFullYear()}-${
-      postDate.getMonth() + 1
-    }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
+    const formattedDate = `${postDate.getFullYear()}-${postDate.getMonth() + 1
+      }-${postDate.getDate()} ${postDate.toLocaleTimeString()}`;
     return formattedDate;
   };
 
@@ -40,14 +39,14 @@ function Details() {
       const highestBid =
         bids.length > 0 // kontroll om det finns några bud
           ? bids.reduce(
-              (
-                previousHighestBid,
-                currentBid // jämföra tidigare högsta budet med nuvarande but
-              ) =>
-                previousHighestBid.Amount > currentBid.Amount
-                  ? previousHighestBid
-                  : currentBid
-            )
+            (
+              previousHighestBid,
+              currentBid // jämföra tidigare högsta budet med nuvarande but
+            ) =>
+              previousHighestBid.Amount > currentBid.Amount
+                ? previousHighestBid
+                : currentBid
+          )
           : null;
       setHighestBid(highestBid);
     }
@@ -107,23 +106,26 @@ function Details() {
           <p className={styles.label}>Amount: {highestBid.Amount} kr</p>
         </div>
       ) : (
-        <div className={styles.bids}>
-          <h3>Bids</h3>
-          <ul>
-            {bids.map((bid, index) => (
-              <ul className={styles.bidiInfo} key={index}>
-                <span>{bid.Bidder}</span>
-                <span>{bid.Amount} kr</span>
-              </ul>
-            ))}
-          </ul>
-          <input type="number" ref={userBidRef} />
-          <button onClick={placeBid}>Place Bid</button>
-        </div>
+        currentDateForDeleting < endDateForDeleting && (
+          <div className={styles.bids}>
+            <h3>Bids</h3>
+            <ul>
+              {bids.map((bid, index) => (
+                <ul className={styles.bidiInfo} key={index}>
+                  <span>{bid.Bidder}</span>
+                  <span>{bid.Amount} kr</span>
+                </ul>
+              ))}
+            </ul>
+            <input type="number" ref={userBidRef} />
+            <button onClick={placeBid}>Place Bid</button>
+          </div>
+        )
+
       )}
       {bids.length === 0 && currentDateForDeleting > endDateForDeleting ? (
         <div>
-          <p>Det finns inga bud ännu, du kan ta bort auktionen</p>
+          <p>There is no bids for this auction, you can delete it</p>
           <button onClick={deleteAuction}>Delete Auction</button>
         </div>
       ) : null}
