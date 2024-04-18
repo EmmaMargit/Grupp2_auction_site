@@ -49,41 +49,43 @@ function Details() {
     }
   }, [auction.EndDate, bids]);
 
-  // Lägga nytt bud med hjälp av Arrow function: 
-  const placeBid = () => {
-    const userBid = parseInt(userBidRef.current.value);
-    const userName = userNameRef.current.value; // Hämta värdet från namninput
-    if (userBid > (Math.max(...bids.map(o => o.Amount)) || auction.StartingPrice)) {
-      userBidRef.current.value = ''; // Nollställ input efter att budet har lagts
-      userNameRef.current.value = ''; // Nollställ namninput efter att budet har lagts
-      setBidErrorMessage(''); // Återställ felmeddelandet om budet är tillräckligt högt
+// Lägga nytt bud med hjälp av Arrow function: 
+const placeBid = () => {
+  const userBid = parseInt(userBidRef.current.value);
+  const userName = userNameRef.current.value; // Hämta värdet från namninput
 
-      fetch(`https://auctioneer2.azurewebsites.net/bid/2wvu`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-        
-      },
-      body: JSON.stringify({
-        "Amount": userBid,
-        "AuctionID": auction.AuctionID,
-        "Bidder": userName
-      })
-    })
-    .then(response => response.json())
-    .then(newBid => {
-      // Uppdatera tillståndet för bud
-      setBids(prevBids => [...prevBids, newBid]);
-      console.log("Bid placed by", userName, ":", userBid);
-    })
-    .catch(error => console.error("Error placing bid:", error));
+  console.log(auction);
+  
+  if ((userBid >= auction.StartingPrice) && (userBid > Math.max(...bids.map(o => o.Amount))|| bids.length === 0)) {
 
-    console.log("Bid placed by", userName, ":", userBid); // Logga budet och användarens namn
-  } else {
-    setBidErrorMessage('Your bid is too low or invalid.');
-  }
+    userBidRef.current.value = ''; // Nollställ input efter att budet har lagts
+    userNameRef.current.value = ''; // Nollställ namninput efter att budet har lagts
+    setBidErrorMessage(''); // Återställ felmeddelandet om budet är tillräckligt högt
+
+    fetch(`https://auctioneer2.azurewebsites.net/bid/2wvu`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      "Amount": userBid,
+      "AuctionID": auction.AuctionID,
+      "Bidder": userName
+    })
+  })
+  .then(response => response.json())
+  .then(newBid => {
+
+    // Uppdatera tillståndet för bud
+    setBids(prevBids => [...prevBids, newBid]);
+  })
+  .catch(error => console.error("Error placing bid:", error));
+
+  console.log("Bid placed by", userName, ":", userBid); // Logga budet och användarens namn
+} else {
+  setBidErrorMessage('Your bid is too low or invalid.');
+}
 };
-
 
   return (
     <div className={styles.wrapper}>
@@ -148,6 +150,137 @@ function Details() {
 }
 
 export default Details;
+
+
+// Lägga nytt bud med hjälp av Arrow function: 
+// const placeBid = () => {
+//   const userBid = parseInt(userBidRef.current.value);
+//   const userName = userNameRef.current.value; // Hämta värdet från namninput
+//   if (userBid > (Math.max(...bids.map(o => o.Amount)) || auction.StartingPrice)) {
+//     userBidRef.current.value = ''; // Nollställ input efter att budet har lagts
+//     userNameRef.current.value = ''; // Nollställ namninput efter att budet har lagts
+//     setBidErrorMessage(''); // Återställ felmeddelandet om budet är tillräckligt högt
+
+//     fetch(`https://auctioneer2.azurewebsites.net/bid/2wvu`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//       "Amount": userBid,
+//       "AuctionID": auction.AuctionID,
+//       "Bidder": userName
+//     })
+//   })
+//   .then(response => response.json())
+//   .then(newBid => {
+
+//     // Uppdatera tillståndet för bud
+//     setBids(prevBids => [...prevBids, newBid]);
+    
+//   })
+//   .catch(error => console.error("Error placing bid:", error));
+
+//   console.log("Bid placed by", userName, ":", userBid); // Logga budet och användarens namn
+// } else {
+//   setBidErrorMessage('Your bid is too low or invalid.');
+// }
+// };
+
+
+
+// const placeBid = () => {
+//   const userBid = parseInt(userBidRef.current.value);
+//   const userName = userNameRef.current.value;
+
+//   console.log("User bid:", userBid); // Logga användarens bud
+//   console.log("Starting price:", auction.StartingPrice); // Logga startpriset
+
+//   if (userBid <= 0) {
+//     // Kontrollera om budet är mindre än eller lika med noll
+//     setBidErrorMessage('Your bid must be greater than zero.');
+//     return; // Avsluta funktionen om budet är ogiltigt
+//   }
+
+//   if (bids.length === 0 && userBid < auction.StartingPrice) {
+//     // Kontrollera om det är det första budet och om det är lägre än eller lika med startpriset
+//     setBidErrorMessage('Your bid must be higher than or equal to the starting price.');
+//     return; // Avsluta funktionen om budet är för lågt
+//   }
+
+//   if (userBid <= Math.max(...bids.map(bid => bid.Amount))) {
+//     // Kontrollera om budet är lägre än eller lika med det högsta budet
+//     setBidErrorMessage('Your bid must be higher than the current highest bid.');
+//     return; // Avsluta funktionen om budet är för lågt
+//   }
+
+//   if (userBid === auction.StartingPrice) {
+//     // Kontrollera om budet är lika med startpriset
+//     setBidErrorMessage('Your bid must be higher than the starting price.');
+//     return; // Avsluta funktionen om budet är för lågt
+//   }
+
+//   // Om budet är godkänt, fortsätt med att lägga till budet
+//   fetch(`https://auctioneer2.azurewebsites.net/bid/2wvu`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//       "Amount": userBid,
+//       "AuctionID": auction.AuctionID,
+//       "Bidder": userName
+//     })
+//   })
+//   .then(response => response.json())
+//   .then(newBid => {
+//     // Uppdatera tillståndet för bud
+//     setBids(prevBids => [...prevBids, newBid]);
+//     console.log("Bid placed by", userName, ":", userBid);
+//   })
+//   .catch(error => console.error("Error placing bid:", error));
+
+//   // Återställ felmeddelandet om budet är tillräckligt högt
+//   setBidErrorMessage('');
+//   // Logga budet och användarens namn
+//   console.log("Bid placed by", userName, ":", userBid); 
+// };
+
+
+  // Lägga nytt bud med hjälp av Arrow function: 
+//   const placeBid = () => {
+//     const userBid = parseInt(userBidRef.current.value);
+//     const userName = userNameRef.current.value; // Hämta värdet från namninput
+//     if (userBid > (Math.max(...bids.map(o => o.Amount)) || auction.StartingPrice)) {
+//       userBidRef.current.value = ''; // Nollställ input efter att budet har lagts
+//       userNameRef.current.value = ''; // Nollställ namninput efter att budet har lagts
+//       setBidErrorMessage(''); // Återställ felmeddelandet om budet är tillräckligt högt
+
+//       fetch(`https://auctioneer2.azurewebsites.net/bid/2wvu`, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         "Amount": userBid,
+//         "AuctionID": auction.AuctionID,
+//         "Bidder": userName
+//       })
+//     })
+//     .then(response => response.json())
+//     .then(newBid => {
+
+//       // Uppdatera tillståndet för bud
+//       setBids(prevBids => [...prevBids, newBid]);
+//       // console.log("Bid placed by", userName, ":", userBid);
+//     })
+//     .catch(error => console.error("Error placing bid:", error));
+
+//     console.log("Bid placed by", userName, ":", userBid); // Logga budet och användarens namn
+//   } else {
+//     setBidErrorMessage('Your bid is too low or invalid.');
+//   }
+// };
 
 
 
