@@ -49,6 +49,7 @@ function Details() {
     }
   }, [auction.EndDate, bids]);
 
+  // Lägga nytt bud med hjälp av Arrow function: 
   const placeBid = () => {
     const userBid = parseInt(userBidRef.current.value);
     const userName = userNameRef.current.value; // Hämta värdet från namninput
@@ -56,14 +57,33 @@ function Details() {
       userBidRef.current.value = ''; // Nollställ input efter att budet har lagts
       userNameRef.current.value = ''; // Nollställ namninput efter att budet har lagts
       setBidErrorMessage(''); // Återställ felmeddelandet om budet är tillräckligt högt
-      // TODO: Gör en fetch - POST bid
-      // Posta mot serven 
-      // uppdatera statet
-      console.log("Bid placed by", userName, ":", userBid); // Logga budet och användarens namn
-    } else {
-      setBidErrorMessage('Your bid is too low or invalid.');
-    }
-  };
+
+      fetch(`https://auctioneer2.azurewebsites.net/bid/2wvu`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        
+      },
+      body: JSON.stringify({
+        "Amount": userBid,
+        "AuctionID": auction.AuctionID,
+        "Bidder": userName
+      })
+    })
+    .then(response => response.json())
+    .then(newBid => {
+      // Uppdatera tillståndet för bud
+      setBids(prevBids => [...prevBids, newBid]);
+      console.log("Bid placed by", userName, ":", userBid);
+    })
+    .catch(error => console.error("Error placing bid:", error));
+
+    console.log("Bid placed by", userName, ":", userBid); // Logga budet och användarens namn
+  } else {
+    setBidErrorMessage('Your bid is too low or invalid.');
+  }
+};
+
 
   return (
     <div className={styles.wrapper}>
@@ -112,14 +132,15 @@ function Details() {
             ))}
           </ul>
           {bidErrorMessage && <p className={styles.errorMessage}>{bidErrorMessage}</p>}
-          
+
           {/* Input för budgivarens namn */}
           <input type="text" ref={userNameRef} /> 
 
           {/* Input för budgivarens bud */}
           <input type="number" ref={userBidRef} />
 
-          <button onClick={placeBid}>Place Bid</button>
+          <button onClick={() => placeBid()}>Place Bid</button>
+
         </div>
       )}
     </div>
@@ -130,8 +151,9 @@ export default Details;
 
 
 
-
-
+// TODO: Gör en fetch - POST bid
+      // Posta mot serven 
+      // uppdatera statet
 
 
 // import React, { useEffect, useState } from "react";
