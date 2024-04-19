@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid'; 
+import "../../stylesheet/Skapa-annons.css";
 
 const CreateAuctionForm = () => {
   const initialFormData = {
@@ -30,7 +31,6 @@ const CreateAuctionForm = () => {
       ...formData,
       StartingPrice: startBidValue
     });
-    //console.log('FormData before sending:', formData);
     
     fetch('https://auctioneer2.azurewebsites.net/auction/2wvu', {
       method: 'POST',
@@ -48,9 +48,10 @@ const CreateAuctionForm = () => {
     .then(data => {
       console.log('Auction created:', data);
       
-      setFormData({          // Reset form fields after successful submission
+      // Återställer formuläret
+      setFormData({          
         ...initialFormData,
-        id: uuidv4()           // Generate new unique id
+        id: uuidv4()           
       });
     })
     .catch(error => {
@@ -59,25 +60,27 @@ const CreateAuctionForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form onSubmit={handleSubmit} className="form-container">
+      <label className="form-label">
         Title:
         <input
           type="text"
           name="Title"
           value={formData.Title}
           onChange={handleChange}
+          className="form-input"
         />
       </label>
-      <label>
+      <label className="form-label">
         Description:
         <textarea
           name="Description"
           value={formData.Description}
           onChange={handleChange}
+          className="form-textarea"
         />
       </label>
-      <label>
+      <label className="form-label">
         Start Bid:
         <input
           type="number"
@@ -85,36 +88,40 @@ const CreateAuctionForm = () => {
           value={formData.StartingPrice}
           onChange={handleChange}
           min="0"
+          className="form-input"
         />
       </label>
-      <label>
+      <label className="form-label">
         Start Date:
         <input
           type="date"
           name="StartDate"
           value={formData.StartDate}
           onChange={handleChange}
+          className="form-input"
         />
       </label>
-      <label>
+      <label className="form-label">
         End Date:
         <input
           type="date"
           name="EndDate"
           value={formData.EndDate}
           onChange={handleChange}
+          className="form-input"
         />
       </label>
-      <label>
+      <label className="form-label">
         Created By:
         <input
           type="text"
           name="CreatedBy"
           value={formData.CreatedBy}
           onChange={handleChange}
+          className="form-input"
         />
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit" className="form-submit">Submit</button>
     </form>
   );
 };
