@@ -153,6 +153,7 @@ const placeBid = () => {
           <input type="number" ref={userBidRef} />
 
           <button onClick={() => placeBid()}>Place Bid</button>
+        </div>
         )
 
       )}
