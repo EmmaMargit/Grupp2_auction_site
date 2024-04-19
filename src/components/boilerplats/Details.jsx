@@ -126,7 +126,16 @@ const placeBid = () => {
           <p>{formatDate(auction.EndDate)}</p>
         </div>
       </div>
-              
+      <div className={styles.placebidContainer}>
+      {/* Input för budgivarens namn */}
+      <input type="text" ref={userNameRef} placeholder="Namn" />
+  
+      {/* Input för budgivarens bud */}
+      <input type="number" ref={userBidRef} placeholder="Budet" />
+  
+      <button onClick={() => placeBid()}>Place Bid</button>
+      </div>
+
       {highestBid ? (
         <div className={styles.detailP}>
           <p className={styles.label}>Winning bid:</p>
@@ -145,25 +154,20 @@ const placeBid = () => {
                 </ul>
               ))}
             </ul>
-         
-          {/* Input för budgivarens namn */}
-          <input type="text" ref={userNameRef} /> 
-
-          {/* Input för budgivarens bud */}
-          <input type="number" ref={userBidRef} />
-
-          <button onClick={() => placeBid()}>Place Bid</button>
-        </div>
+          </div>
         )
-
       )}
+  
+      {bidErrorMessage && (
+        <p className={styles.error}>{bidErrorMessage}</p>
+      )}
+  
       {bids.length === 0 && currentDateForDeleting > endDateForDeleting ? (
         <div>
           <p>There is no bids for this auction, you can delete it</p>
           <button onClick={deleteAuction}>Delete Auction</button>
         </div>
       ) : null}
-
     </div>
   );
 }
