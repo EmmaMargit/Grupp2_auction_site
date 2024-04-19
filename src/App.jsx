@@ -1,4 +1,3 @@
-
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/boilerplats/Footer";
 import "./stylesheet/Footer.module.css";
@@ -14,7 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<FirstPage />} />
-        <Route path="/auction/:id" element={<Details />} />
+        <Route path="/auction/:Id" element={<Details />} />
         <Route path="/create-auction" element={<CreateAuctionForm />} />
       </Routes>
       <Footer />
