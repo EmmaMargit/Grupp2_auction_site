@@ -53,10 +53,11 @@ function Details() {
 const placeBid = () => {
   const userBid = parseInt(userBidRef.current.value);
   const userName = userNameRef.current.value; // Hämta värdet från namninput
-
-  console.log(auction);
   
-  if ((userBid >= auction.StartingPrice) && (userBid > Math.max(...bids.map(o => o.Amount))|| bids.length === 0)) {
+  const highestBid = bids.length > 0 ? Math.max(...bids.map(o => o.Amount)) : auction.StartingPrice;
+
+  if (userBid > highestBid) {
+    console.log("Valid bid. Proceeding with request...");
 
     userBidRef.current.value = ''; // Nollställ input efter att budet har lagts
     userNameRef.current.value = ''; // Nollställ namninput efter att budet har lagts
@@ -77,15 +78,15 @@ const placeBid = () => {
   .then(newBid => {
 
     // Uppdatera tillståndet för bud
-    setBids(prevBids => [...prevBids, newBid]);
+    setBids([...bids, { Amount: userBid, Bidder: userName }]);
   })
   .catch(error => console.error("Error placing bid:", error));
 
   console.log("Bid placed by", userName, ":", userBid); // Logga budet och användarens namn
-} else {
-  setBidErrorMessage('Your bid is too low or invalid.');
+  } else {
+    setBidErrorMessage('Your bid is too low or invalid.');
+  }
 }
-};
 
   return (
     <div className={styles.wrapper}>
